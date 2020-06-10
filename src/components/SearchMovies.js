@@ -9,8 +9,6 @@ function SearchMovies(){
     const searchMovies = async (e) => {
         e.preventDefault()
 
-        const query = 'Jurasic'
-
         const url =`https://api.themoviedb.org/3/search/movie?api_key=3afccc5e282dbb935354bbcff3754357&language=en-US&query=${query}&page=1&include_adult=false`
 
         try{
