@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function SearchMovies(){
 
+    const [query, setQuery] = useState('')
+    const [movies, setMovies] = useState([])
+    
     const searchMovies = async (e) => {
         e.preventDefault()
-        console.log('searching')
 
         const query = 'Jurasic'
 
@@ -13,7 +15,8 @@ function SearchMovies(){
         try{
             const res = await fetch(url)
             const data = await res.json()
-            console.log(data)
+            setMovies(data.results)
+            console.log(movies)
         }catch(err){
             console.log('errooor')
         }
@@ -23,7 +26,14 @@ function SearchMovies(){
     return(
         <form className='form' onSubmit={searchMovies}>
             <label className='label' htmlFor='query'>Movie Search</label>
-            <input className='input' type='text' name='query' placeholder='i.e Jurasic Park' />
+            <input 
+                className='input' 
+                type='text' 
+                name='query' 
+                placeholder='i.e Jurasic Park'
+                value={query}
+                onChange={(e)=> setQuery(e.target.value)}
+                />
             <button className='button' type='submit'>Search</button>
         </form>
     )
